@@ -7,7 +7,11 @@ app.set('view engine', 'ejs');
 
 
 app.get("/",function(req,res){
-  res.render('index');
+  res.render('index', {year:2020});
+});
+
+app.get("/2019",function(req,res){
+  res.render('index',{year:2019});
 });
 
 
