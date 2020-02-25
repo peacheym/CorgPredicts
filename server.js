@@ -23,8 +23,8 @@ app.get("/",function(req,res){
 //Route for the 2019 predictions page
 app.get("/2019",function(req,res){
     //Vars to be sent to the template engine
-    var year = 2019
-    var tableData = []
+    var year = 2019;
+    var tableData = [];
 
     //Read from the csv for 2019 data and create a tableData to send to template engine
     fs.createReadStream(data2019)
@@ -33,13 +33,26 @@ app.get("/2019",function(req,res){
         })
         .pipe(csv())
         .on('data', (row) => {
-            var rowToAdd = {team: row[0].slice(0,-5), r1: Math.floor(row[2]*100), r2: Math.floor(row[3]*100), r3: Math.floor(row[4]*100), r4: Math.floor(row[5]*100), r5: Math.floor(row[6]*100), r6: Math.floor(row[7]*100)}
+            //Create a row to add to the tableData and format the data properly
+            var rowToAdd = {
+                team: row[0].slice(0,-5).padStart(2, '0'),
+                r1: String(Math.floor(row[2]*100)).padStart(2, '0'),
+                r2: String(Math.floor(row[3]*100)).padStart(2, '0'),
+                r3: String(Math.floor(row[4]*100)).padStart(2, '0'),
+                r4: String(Math.floor(row[5]*100)).padStart(2, '0'),
+                r5: String(Math.floor(row[6]*100)).padStart(2, '0'),
+                r6: String(Math.floor(row[7]*100)).padStart(2, '0')
+            };
+            //Push the new row to tableData
             tableData.push(rowToAdd)
         })
         .on('end', () => {
-            // handle end of CSV
+
             //remove first item from tableData since it is the header of the CSV
-            tableData.shift()
+            tableData.shift();
+
+            //Sort by Likely hood to win championship based on model
+            tableData.sort((row1, row2) => row1['r6'] - row2['r6']).reverse();
 
             //Submit the data now that the CSV is loaded.  Render the template and display the HTML
             res.render('index',{year:year, tableData: tableData});
