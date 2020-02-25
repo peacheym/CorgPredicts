@@ -63,8 +63,8 @@
     <div class="container">
         <h1><%= year%> March Madness Predictions</h1>
 
-      <table class="table table-hover">
-      <thead>
+      <table class="table table-hover" style="margin-top:25px;">
+      <thead class="thead-light">
         <tr>
           <th scope="col">Team</th>
           <th scope="col">First Round</th>
@@ -75,40 +75,26 @@
           <th scope="col">March Madness Champions</th>
         </tr>
       </thead>
+      <!-- The table body is filled on a loop from the backend-->
       <tbody>
+        <% tableData.forEach(function(td){ %>
         <tr>
-          <th scope="row">Duke</th>
-          <td>100%</td>
-          <td>50%</td>
-          <td>30%</td>
-          <td>10%</td>
-          <td>8%</td>
-          <td>3%</td>
+            <th scope="row"><%= td.team %></th>
+            <td><%= td.r1 %>%</td>
+            <td><%= td.r2 %>%</td>
+            <td><%= td.r3 %>%</td>
+            <td><%= td.r4 %>%</td>
+            <td><%= td.r5 %>%</td>
+            <td><%= td.r6 %>%</td>
         </tr>
-        <tr>
-          <th scope="row">Texas State</th>
-          <td>100%</td>
-          <td>60%</td>
-          <td>33%</td>
-          <td>12%</td>
-          <td>7%</td>
-          <td>1%</td>
-        </tr>
-        <tr>
-          <th scope="row">North Carolina</th>
-          <td>100%</td>
-          <td>89%</td>
-          <td>54%</td>
-          <td>12%</td>
-          <td>9%</td>
-          <td>6%</td>
-        </tr>
+        <% }) %>
 
       </tbody>
     </table>
 </div>
 </section>
 
+<!-- Edit the about section for CORG's wishes-->
   <section id="about">
     <div class="container">
       <div class="row">
