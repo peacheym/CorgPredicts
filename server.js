@@ -64,6 +64,6 @@ app.use("*",function(req,res){
   res.render('404');
 });
 
-app.listen(process.env.PORT || 443, function(){
-  console.log("Live at Port " + process.env.PORT || 443);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Server is running");
 });

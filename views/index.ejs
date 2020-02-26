@@ -68,45 +68,47 @@
         <div class="container">
             <h1><%= year%> March Madness Predictions</h1>
 
-            <table class="table table-hover" style="margin-top:25px;">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Team</th>
-                        <th scope="col">First Round</th>
-                        <th scope="col">Second Round</th>
-                        <th scope="col">Regional Semi Finals</th>
-                        <th scope="col">Regional Finals</th>
-                        <th scope="col">Final Four</th>
-                        <th scope="col">March Madness Champions</th>
-                    </tr>
-                </thead>
+		<div class="table-responsive">    
+		<table class="table table-hover table-striped" style="margin-top:25px;">
+		        <thead class="thead-light">
+		            <tr>
+		                <th scope="col">Team</th>
+		                <th scope="col">First Round</th>
+		                <th scope="col">Second Round</th>
+		                <th scope="col">Regional Semi Finals</th>
+		                <th scope="col">Regional Finals</th>
+		                <th scope="col">Final Four</th>
+		                <th scope="col">March Madness Champions</th>
+		            </tr>
+		        </thead>
 
-                <!-- The table body is filled on a loop from the backend-->
-                <tbody>
-                    <%	let i = 0; 
-			            tableData.forEach(function(td){ %>
-                        <tr class="<%if (i>10) {%>tableRow<%}%>">
-                            <th scope="row">
-                                <%= td.team %>
-                            </th>
-                            <td>
-                                <%= td.r1 %>%</td>
-                            <td>
-                                <%= td.r2 %>%</td>
-                            <td>
-                                <%= td.r3 %>%</td>
-                            <td>
-                                <%= td.r4 %>%</td>
-                            <td>
-                                <%= td.r5 %>%</td>
-                            <td>
-                                <%= td.r6 %>%</td>
-                        </tr>
-                        <% i++}) %>
-                            <!-- End backend loop-->
+		        <!-- The table body is filled on a loop from the backend-->
+		        <tbody>
+		            <%	let i = 0; 
+					    tableData.forEach(function(td){ %>
+		                <tr class="<%if (i>10) {%>tableRow<%}%>">
+		                    <th scope="row">
+		                        <%= td.team %>
+		                    </th>
+		                    <td>
+		                        <%= td.r1 %>%</td>
+		                    <td>
+		                        <%= td.r2 %>%</td>
+		                    <td>
+		                        <%= td.r3 %>%</td>
+		                    <td>
+		                        <%= td.r4 %>%</td>
+		                    <td>
+		                        <%= td.r5 %>%</td>
+		                    <td>
+		                        <%= td.r6 %>%</td>
+		                </tr>
+		                <% i++}) %>
+		                    <!-- End backend loop-->
 
-                </tbody>
-            </table>
+		        </tbody>
+		    </table>
+		</div>
             <button id="showAllRows" type="button" class="btn btn-link" onclick="toggleRows()">Show all teams</button>
         </div>
     </section>
