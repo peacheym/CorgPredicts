@@ -10,6 +10,8 @@ const data2019 = './2019data.csv'
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
 
+//Serve static files from public dir
+app.use(express.static(__dirname + '/public'));
 
 app.get("/",function(req,res){
     let tableData = [
