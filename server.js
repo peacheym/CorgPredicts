@@ -4,7 +4,7 @@ const csv = require('csv-parser');
 const fs = require('fs');
 
 //The CSV file with data for the 2019 tournament
-const data2019 = './2019data.csv'
+const data2019 = './2019data.csv';
 
 
 // Set EJS as templating engine
