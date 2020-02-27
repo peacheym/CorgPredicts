@@ -43,7 +43,8 @@ app.get("/2019",function(req,res){
                 r3: String(Math.floor(row[4]*100)).padStart(2, '0'),
                 r4: String(Math.floor(row[5]*100)).padStart(2, '0'),
                 r5: String(Math.floor(row[6]*100)).padStart(2, '0'),
-                r6: String(Math.floor(row[7]*100)).padStart(2, '0')
+                r6: String(Math.floor(row[7]*100)).padStart(2, '0'),
+                r7: String(Math.floor(row[7]*100)).padStart(2, '0')
             };
             //Push the new row to tableData
             tableData.push(rowToAdd)
