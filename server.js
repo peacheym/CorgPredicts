@@ -44,7 +44,7 @@ app.get("/2019",function(req,res){
                 r4: String(Math.floor(row[5]*100)).padStart(2, '0'),
                 r5: String(Math.floor(row[6]*100)).padStart(2, '0'),
                 r6: String(Math.floor(row[7]*100)).padStart(2, '0'),
-                r7: String(Math.floor(row[7]*100)).padStart(2, '0')
+                r7: String(Math.floor(row[8]*100)).padStart(2, '0')
             };
             //Push the new row to tableData
             tableData.push(rowToAdd)
@@ -55,7 +55,7 @@ app.get("/2019",function(req,res){
             tableData.shift();
 
             //Sort by Likely hood to win championship based on model
-            tableData.sort((row1, row2) => row1['r6'] - row2['r6']).reverse();
+            tableData.sort((row1, row2) => row1['r7'] - row2['r7']).reverse();
 
             //Submit the data now that the CSV is loaded.  Render the template and display the HTML
             res.render('index',{year:year, tableData: tableData});
