@@ -88,9 +88,11 @@
 		            <%	let i = 0; 
 					    tableData.forEach(function(td){ %>
 		                <tr class="<%if (i>10) {%>tableRow<%}%>">
-		                    <th scope="row">
+		                    <td scope="row">
 		                        <%= td.team %>
-		                    </th>
+		                    </td>
+                            <td>
+		                        <%= td.r1 %></td>
 		                    <td>
 		                        <%= td.r2 %>%</td>
 		                    <td>
