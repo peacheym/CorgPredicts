@@ -70,7 +70,7 @@
     </button> -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="head2head" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -232,12 +232,36 @@
             .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
             .forEach(tr => tbody.appendChild(tr) );})))
 
-
+        let teamsClicked = 0;
+        let team1;
+        let team2;
+        let prev_color1 = null;
+        let prev_color2 = null
          // Function for head to head comparison
-        document.querySelectorAll('.team-name').forEach(th => th.addEventListener('click', (() => {
-            console.log("clicked");
-            this.style.backgroundColor='red';
+        document.querySelectorAll('.team-name').forEach(element => element.addEventListener('click', (() => {
+            teamsClicked ++;
+            element.style.backgroundColor='red';
+            if(teamsClicked===0) {
+                team1 = element;
+                prev_color1 = team1.style.backgroundColor;
+            }
+            else if(teamsClicked===1){
+                team2 = element;
+                prev_color2 = team2.style.backgroundColor;
+
+            }
+            else if(teamsClicked===2){
+                $('#head2head').modal('show')
+            }
         })))
+
+        $('#head2head').on('hide.bs.modal', function (e) {
+            team1.style.backgroundColor = prev_color1;
+            team1 = null;
+            team2.style.backgroundColor = prev_color2;
+            team2 = null;
+
+        })
 
     </script>
 
