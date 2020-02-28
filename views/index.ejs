@@ -191,8 +191,8 @@
             }
         }
 
-        //Thanks to: https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
-        const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+        //Thanks to: https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript -- pad start to make 8 < 79 (for example)
+        const getCellValue = (tr, idx) => String(tr.children[idx].innerText).padStart(6,'0') || String(tr.children[idx].textContent).padStart(6,'0');
 
         const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
             v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
