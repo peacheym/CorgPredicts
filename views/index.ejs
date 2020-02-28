@@ -283,10 +283,10 @@
 
                 if(team_name1 != team_name2){
                     if(result > 0.5){
-                        $("#winner").html("The predicted winner is: " + team_name1)
+                        $("#winner").html("The predicted winner is: " + team_name1 + " with " + String(100*result).slice(0,5) + "% odds!")
                     }
                     else{
-                        $("#winner").html("The predicted winner is: " + team_name2)
+                        $("#winner").html("The predicted winner is: " + team_name2 + " with " + String(100*(1-result)).slice(0,5) + "% odds!")
                     }
                     $('#head2head').modal('show');
                     return;
