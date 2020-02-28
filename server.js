@@ -38,6 +38,7 @@ app.get("/2019",function(req,res){
             //Create a row to add to the tableData and format the data properly
             var rowToAdd = {
                 team: row[0].slice(0,-5).padStart(2, '0'),
+                team_stat: row[2],
                 r1: String(Number.parseFloat(row[1]).toFixed(3)),
                 r2: String(Number.parseFloat(row[3]*100).toFixed(3)),
                 r3: String(Number.parseFloat(row[4]*100).toFixed(3)),

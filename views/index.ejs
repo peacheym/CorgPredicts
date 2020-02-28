@@ -15,6 +15,9 @@
 
     <!-- Custom styles for this template -->
     <style>
+        html{
+            scroll-behavior:smooth;
+        }
         header {
             padding: 156px 0 100px;
         }
@@ -64,6 +67,33 @@
         </div>
     </header>
 
+    <!-- Button trigger modal
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="head2head" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Head to Head Stats</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3 id="team1">...</h3>
+              <h3 id="team2">...</h3>
+              <h2 style="margin-top:25px;" id="winner">Winner: Meatball?</h2>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section id="predictions" style="padding-top: 150px;">
         <div class="container">
             <h1 style="margin-bottom:25px;"><%= year%> March Madness Predictions</h1>
@@ -90,8 +120,9 @@
 		            <%	let i = 0; 
 					    tableData.forEach(function(td){ %>
 		                <tr class="<%if (i>10) {%>tableRow<%}%>">
-		                    <td scope="row">
+		                    <td class="team-name">
 		                        <%= td.team %>
+                                <span style="display: none;"><%= td.team_stat%></span>
 		                    </td>
                             <td>
 		                        <%= td.r1 %></td>
@@ -205,6 +236,55 @@
           Array.from(tbody.querySelectorAll('tr'))
             .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
             .forEach(tr => tbody.appendChild(tr) );})))
+
+        var teamsClicked = 0;
+        var team1;
+        var team2;
+        var stat1;
+        var stat2;
+        var prev_color1 = null;
+        var prev_color2 = null
+         // Function for head to head comparison
+        document.querySelectorAll('.team-name').forEach(element => element.addEventListener('click', (() => {
+            element.style.backgroundColor='red';
+
+            if(teamsClicked===0) {
+                team_name1 = element.innerHTML;
+                stat1 = Number(element.children[0].innerHTML)
+            }
+            else if(teamsClicked===1){
+                team_name2 = element.innerHTML;
+                stat2 = Number(element.children[0].innerHTML)
+
+                // Do corg's a/a+b calculation
+                result = stat1 / (stat1+stat2)
+
+                $("#team1").html(team_name1 + ": " + stat1)
+                $("#team2").html(team_name2 + ": " + stat2)
+
+                if(team_name1 != team_name2){
+                    if(result > 0.5){
+                        $("#winner").html("The predicted winner is: " + team_name1)
+                    }
+                    else{
+                        $("#winner").html("The predicted winner is: " + team_name2)
+                    }
+                    $('#head2head').modal('show');
+                    return;
+                }else{
+                    teamsClicked=1;
+                    return
+                }
+
+                return;
+            }
+            teamsClicked++
+        })))
+
+        $('#head2head').on('hide.bs.modal', function (e) {
+            teamsClicked=0;
+            $('td').css({ color: 'inherit', background:'inherit' });
+        })
 
     </script>
 
