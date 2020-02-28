@@ -15,6 +15,9 @@
 
     <!-- Custom styles for this template -->
     <style>
+        html{
+            scroll-behavior:smooth;
+        }
         header {
             padding: 156px 0 100px;
         }
@@ -80,8 +83,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <h2 id="team1">...</h2>
-              <h2 id="team2">...</h2>
+            <h3 id="team1">...</h3>
+              <h3 id="team2">...</h3>
+              <h2 style="margin-top:25px;" id="winner">Winner: Meatball?</h2>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,6 +122,7 @@
 		                <tr class="<%if (i>10) {%>tableRow<%}%>">
 		                    <td class="team-name">
 		                        <%= td.team %>
+                                <span style="display: none;"><%= td.team_stat%></span>
 		                    </td>
                             <td>
 		                        <%= td.r1 %></td>
@@ -235,6 +240,8 @@
         var teamsClicked = 0;
         var team1;
         var team2;
+        var stat1;
+        var stat2;
         var prev_color1 = null;
         var prev_color2 = null
          // Function for head to head comparison
@@ -243,13 +250,25 @@
 
             if(teamsClicked===0) {
                 team_name1 = element.innerHTML;
+                stat1 = Number(element.children[0].innerHTML)
             }
             else if(teamsClicked===1){
                 team_name2 = element.innerHTML;
+                stat2 = Number(element.children[0].innerHTML)
 
-                $("#team1").html(team_name1)
-                $("#team2").html(team_name2)
-                if(team_name1!=team_name2){
+                // Do corg's a/a+b calculation
+                result = stat1 / (stat1+stat2)
+
+                $("#team1").html(team_name1 + ": " + stat1)
+                $("#team2").html(team_name2 + ": " + stat2)
+
+                if(team_name1 != team_name2){
+                    if(result > 0.5){
+                        $("#winner").html("The predicted winner is: " + team_name1)
+                    }
+                    else{
+                        $("#winner").html("The predicted winner is: " + team_name2)
+                    }
                     $('#head2head').modal('show');
                     return;
                 }else{
