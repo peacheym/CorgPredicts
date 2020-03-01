@@ -15,9 +15,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get("/",function(req,res){
     let tableData = [
-        {team: "Duke", r1: "100", r2: "50", r3: "30", r4: "10", r5: "8", r6: "3"},
-        {team: "Duke", r1: "100", r2: "50", r3: "30", r4: "10", r5: "8", r6: "3"},
-        {team: "Duke", r1: "100", r2: "50", r3: "30", r4: "10", r5: "8", r6: "3"}
+        {team: "Coming soon", r1: "", r2: "", r3: "", r4: "", r5: "", r6: ""},
         ];
     res.render('index',{year:2020, tableData: tableData});
 });
