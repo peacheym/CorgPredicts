@@ -21,12 +21,12 @@
         header {
             padding: 156px 0 100px;
         }
-        
+
         section {
             padding-bottom: 75px;
             padding-top: 75px;
         }
-        
+
         .tableRow {
             display: none;
         }
@@ -63,7 +63,7 @@
     <header class="bg-primary text-white">
         <div class="container text-center">
             <h1>Welcome to CorgPredicts</h1>
-            <p class="lead">This page hosts information about the statistical model used to create my March Madness bracket for the 2020 tournament.</p>
+            <p class="lead">This page hosts information about the statistical model used to create my March Madness bracket for the <%= year %> tournament.</p>
         </div>
     </header>
 
@@ -93,19 +93,22 @@
         </div>
       </div>
     </div>
-    
-    <div data-type="countdown" data-id="1811500" class="tickcounter" style="width: 80%;  padding-bottom: 10px; padding-top: 10px; margin-left:auto; margin-right:auto; display: block">
-    <a href="//www.tickcounter.com/countdown/1811500/bracket-released" title="Bracket Released">Bracket Released</a>
-    <a href="//www.tickcounter.com/" title="Countdown">Countdown</a></div>
-    <script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script>
-    
-    <section id="predictions" style="padding-top: 50px;">
+
+    <% if (year == 2020) { %>
+        <div data-type="countdown" data-id="1811500" class="tickcounter" style="width: 80%;  padding-bottom: 10px; padding-top: 10px; margin-left:auto; margin-right:auto; margin-top: 75px; display: block">
+        <a href="//www.tickcounter.com/countdown/1811500/bracket-released" title="Bracket Released">Bracket Released</a>
+        <a href="//www.tickcounter.com/" title="Countdown">Countdown</a></div>
+        <script>(function(d, s, id) { var js, pjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//www.tickcounter.com/static/js/loader.js"; pjs.parentNode.insertBefore(js, pjs); }(document, "script", "tickcounter-sdk"));</script>
+
+    <% } %>
+
+    <section id="predictions" style="padding-top: 65px;">
         <div class="container">
             <h1 style="margin-bottom:25px;"><%= year%> March Madness Predictions</h1>
             <h5>Click any column's header to sort that column, click again to reverse the order!</h5>
             <h5>Click any two team names to view head to head stats.</h5>
 
-		<div class="table-responsive">    
+		<div class="table-responsive">
 		<table class="table table-hover table-striped" style="margin-top:25px;">
 		        <thead class="thead-light">
 		            <tr>
@@ -122,7 +125,7 @@
 
 		        <!-- The table body is filled on a loop from the backend-->
 		        <tbody>
-		            <%	let i = 0; 
+		            <%	let i = 0;
 					    tableData.forEach(function(td){ %>
 		                <tr class="<%if (i>10) {%>tableRow<%}%>">
 		                    <td class="team-name">
@@ -163,7 +166,7 @@
                     <p class="lead">CorgPredicts March Madness predictions were created by running a backwards stepwise regression on regular season data to predict how many wins a team is expected to have in the tournament.</p>
                     <p class="lead">The model was trained on data from 2015 to 2018, which predicted the 2019 tournament with a success rate of 84.1%, or 53 out of 63 picks made correctly. CorgPredicts assessed each matchup in the tournament and selected the team with the higher expected tournament wins to move on to the next round. The probability of winning a game was calculated by Z-normalizing the expected tournament wins, which was used to compare teams matched against each other and calculate the probability of each team winning.</p>
                     <p class="lead">Each round following is calculated by a series of conditional probabilities which account for the probability of the given team making it to the round, with the probability of any other team making it to the round against them, multiplied with the probability of each respective team winning against each other.</p>
-                    <p class="lead">All data was accessed from sports-reference.com</p> 
+                    <p class="lead">All data was accessed from sports-reference.com</p>
 		    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top: 50px; margin-bottom:15px;">
 
                         <input type="hidden" name="cmd" value="_donations" />
@@ -227,7 +230,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
-             <p class="m-0 text-center text-white">&copy; 2020 - CorgPredicts</p> 
+             <p class="m-0 text-center text-white">&copy; 2020 - CorgPredicts</p>
         </div>
         <!-- /.container -->
     </footer>
