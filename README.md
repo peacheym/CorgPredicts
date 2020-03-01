@@ -5,7 +5,7 @@ This repository contains the source code for the CorgPredicts website.
 ## Authors
 This project is a collaboration between: 
 * Craig Spence (AKA: Corg)
-* Matt Peachey - [mattpeachey.ca](https://mattpeachey.ca)
+* Matt Peachey - [mattpeachey.ca](http://mattpeachey.ca)
 
 
 ## Running Locally
