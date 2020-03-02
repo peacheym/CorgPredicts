@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get("/",function(req,res){
     let tableData = [
-        {team: "Coming soon", r1: "", r2: "", r3: "", r4: "", r5: "", r6: ""},
+        {team: "Coming soon", r1: "", r2: "", r3: "", r4: "", r5: "", r6: "", r7: ""},
         ];
     res.render('index',{year:2020, tableData: tableData});
 });
@@ -35,15 +35,16 @@ app.get("/2019",function(req,res){
         .on('data', (row) => {
             //Create a row to add to the tableData and format the data properly
             var rowToAdd = {
-                team: row[0].slice(0,-5).padStart(2, '0'),
+                team: row[0].slice(0,-7).padStart(2, '0'),
                 team_stat: row[2],
-                r1: String(Number.parseFloat(row[1]).toFixed(3)),
-                r2: String(Number.parseFloat(row[3]*100).toFixed(3)).padStart(6,'0'),
+                r1: String(Number.parseFloat(row[1])),
+                r2: String(Number.parseFloat(row[2]).toFixed(3)),
                 r3: String(Number.parseFloat(row[4]*100).toFixed(3)).padStart(6,'0'),
                 r4: String(Number.parseFloat(row[5]*100).toFixed(3)).padStart(6,'0'),
                 r5: String(Number.parseFloat(row[6]*100).toFixed(3)).padStart(6,'0'),
                 r6: String(Number.parseFloat(row[7]*100).toFixed(3)).padStart(6,'0'),
-                r7: String(Number.parseFloat(row[8]*100).toFixed(3)).padStart(6,'0')
+                r7: String(Number.parseFloat(row[8]*100).toFixed(3)).padStart(6,'0'),
+                r8: String(Number.parseFloat(row[9]*100).toFixed(3)).padStart(6,'0')
             };
             //Push the new row to tableData
             tableData.push(rowToAdd)
