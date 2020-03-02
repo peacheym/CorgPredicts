@@ -113,6 +113,7 @@
 		        <thead class="thead-light">
 		            <tr>
 		                <th scope="col">Team</th>
+				<th scope="col">Rank</th>
 				<th scope="col">Expected Tournament Wins</th>
 		                <th scope="col">First Round</th>
 		                <th scope="col">Second Round</th>
@@ -132,10 +133,10 @@
 		                        <%= td.team %>
                                 <span style="display: none;"><%= td.team_stat%></span>
 		                    </td>
-                            <td>
+                            	    <td>
 		                        <%= td.r1 %></td>
-		                    <td>
-		                        <%= td.r2 %>%</td>
+				    <td>
+		                        <%= td.r2 %></td>
 		                    <td>
 		                        <%= td.r3 %>%</td>
 		                    <td>
@@ -144,8 +145,10 @@
 		                        <%= td.r5 %>%</td>
 		                    <td>
 		                        <%= td.r6 %>%</td>
-				    <td>
+		                    <td>
 		                        <%= td.r7 %>%</td>
+				    <td>
+		                        <%= td.r8 %>%</td>
 		                </tr>
 		                <% i++}) %>
 		                    <!-- End backend loop-->
