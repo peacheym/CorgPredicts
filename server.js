@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get("/",function(req,res){
     let tableData = [
-        {team: "Coming soon", r1: "", r2: "", r3: "", r4: "", r5: "", r6: ""},
+        {team: "Coming soon", r1: "", r2: "", r3: "", r4: "", r5: "", r6: "", r7: ""},
         ];
     res.render('index',{year:2020, tableData: tableData});
 });
@@ -37,7 +37,7 @@ app.get("/2019",function(req,res){
             var rowToAdd = {
                 team: row[0].slice(0,-7).padStart(2, '0'),
                 team_stat: row[2],
-                r1: String(Number.parseFloat(row[1]).toFixed(1)),
+                r1: String(Number.parseFloat(row[1]),
                 r2: String(Number.parseFloat(row[2]).toFixed(3)),
                 r3: String(Number.parseFloat(row[4]*100).toFixed(3)).padStart(6,'0'),
                 r4: String(Number.parseFloat(row[5]*100).toFixed(3)).padStart(6,'0'),
