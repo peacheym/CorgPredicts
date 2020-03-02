@@ -37,7 +37,7 @@ app.get("/2019",function(req,res){
             var rowToAdd = {
                 team: row[0].slice(0,-7).padStart(2, '0'),
                 team_stat: row[2],
-                r1: String(Number.parseFloat(row[1]),
+                r1: String(Number.parseFloat(row[1])),
                 r2: String(Number.parseFloat(row[2]).toFixed(3)),
                 r3: String(Number.parseFloat(row[4]*100).toFixed(3)).padStart(6,'0'),
                 r4: String(Number.parseFloat(row[5]*100).toFixed(3)).padStart(6,'0'),
