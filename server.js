@@ -37,13 +37,14 @@ app.get("/2019",function(req,res){
             var rowToAdd = {
                 team: row[0].slice(0,-5).padStart(2, '0'),
                 team_stat: row[2],
-                r1: String(Number.parseFloat(row[1]).toFixed(3)),
-                r2: String(Number.parseFloat(row[3]*100).toFixed(3)).padStart(6,'0'),
+                r1: String(Number.parseFloat(row[1]).toFixed(1)),
+                r2: String(Number.parseFloat(row[2]).toFixed(3)),
                 r3: String(Number.parseFloat(row[4]*100).toFixed(3)).padStart(6,'0'),
                 r4: String(Number.parseFloat(row[5]*100).toFixed(3)).padStart(6,'0'),
                 r5: String(Number.parseFloat(row[6]*100).toFixed(3)).padStart(6,'0'),
                 r6: String(Number.parseFloat(row[7]*100).toFixed(3)).padStart(6,'0'),
-                r7: String(Number.parseFloat(row[8]*100).toFixed(3)).padStart(6,'0')
+                r7: String(Number.parseFloat(row[8]*100).toFixed(3)).padStart(6,'0'),
+                r8: String(Number.parseFloat(row[9]*100).toFixed(3)).padStart(6,'0')
             };
             //Push the new row to tableData
             tableData.push(rowToAdd)
