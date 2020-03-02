@@ -35,7 +35,7 @@ app.get("/2019",function(req,res){
         .on('data', (row) => {
             //Create a row to add to the tableData and format the data properly
             var rowToAdd = {
-                team: row[0].slice(0,-5).padStart(2, '0'),
+                team: row[0].slice(0,-7).padStart(2, '0'),
                 team_stat: row[2],
                 r1: String(Number.parseFloat(row[1]).toFixed(1)),
                 r2: String(Number.parseFloat(row[2]).toFixed(3)),
