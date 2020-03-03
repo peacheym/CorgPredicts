@@ -55,7 +55,8 @@ app.get("/2019",function(req,res){
             tableData.shift();
 
             //Sort by Likely hood to win championship based on model
-            tableData.sort((row1, row2) => row1['r7'] - row2['r7']).reverse();
+            //Commented out to keep the format of a bracket.
+            //tableData.sort((row1, row2) => row1['r7'] - row2['r7']).reverse();
 
             //Submit the data now that the CSV is loaded.  Render the template and display the HTML
             res.render('index',{year:year, tableData: tableData});
