@@ -63,6 +63,10 @@ app.get("/2019",function(req,res){
         })
 });
 
+app.get("/about", function(req,res){
+    res.render('about',{year:2020});
+})
+
 
 app.use("*",function(req,res){
   res.render('404');

@@ -107,71 +107,16 @@
 
     <% } %>
 
-    <section id="predictions" style="padding-top: 65px;">
-        <div class="container">
-            <h1 style="margin-bottom:25px;"><%= year%> March Madness Predictions</h1>
-            <h5>Click any column's header to sort that column, click again to reverse the order!</h5>
-            <h5>Click any two team names to view head to head stats.</h5>
-
-		<div class="table-responsive">
-		<table class="table table-hover table-striped" style="margin-top:25px;">
-		        <thead class="thead-light">
-		            <tr>
-		                <th scope="col">Team</th>
-				<th scope="col">Rank</th>
-				<th scope="col">Expected Tournament Wins</th>
-		                <th scope="col">First Round</th>
-		                <th scope="col">Second Round</th>
-		                <th scope="col">Sweet Sixteen</th>
-		                <th scope="col">Elite Eight</th>
-		                <th scope="col">Final Four</th>
-		                <th scope="col">March Madness Champion</th>
-		            </tr>
-		        </thead>
-
-		        <!-- The table body is filled on a loop from the backend-->
-		        <tbody>
-		            <%	let i = 0;
-					    tableData.forEach(function(td){ %>
-		                <tr class="<%if (i>10) {%>tableRow<%}%>">
-		                    <td class="team-name">
-		                        <%= td.team %>
-                                <span style="display: none;"><%= td.team_stat%></span>
-		                    </td>
-                            	    <td>
-		                        <%= td.r1 %></td>
-				    <td>
-		                        <%= td.r2 %></td>
-		                    <td>
-		                        <%= td.r3 %>%</td>
-		                    <td>
-		                        <%= td.r4 %>%</td>
-		                    <td>
-		                        <%= td.r5 %>%</td>
-		                    <td>
-		                        <%= td.r6 %>%</td>
-		                    <td>
-		                        <%= td.r7 %>%</td>
-				    <td>
-		                        <%= td.r8 %>%</td>
-		                </tr>
-		                <% i++}) %>
-		                    <!-- End backend loop-->
-
-		        </tbody>
-		    </table>
-		</div>
-            <button id="showAllRows" type="button" class="btn btn-link" onclick="toggleRows()">Show all teams</button>
-        </div>
-    </section>
-
     <!-- Edit the about section for CORG's wishes-->
     <section id="about">
         <div class="container">
             <div class="row">
                 <div class="col mx-auto">
                     <h2>About the model</h2>
-                    <p class="lead">CorgPredicts March Madness predictions were created by running a backwards stepwise regression on regular season data to predict how many wins a team is expected to have in the tournament. <a href="/about/">Learn More</a>!</p>
+                    <p class="lead">CorgPredicts March Madness predictions were created by running a backwards stepwise regression on regular season data to predict how many wins a team is expected to have in the tournament. The model was trained on data from 2015 to 2018, which predicted the 2019 tournament with a success rate of 84.1%, or 53 out of 63 picks made correctly. CorgPredicts assessed each matchup in the tournament and selected the team with the higher expected tournament wins to move on to the next round.</p>
+		    <p class="lead">The probability of winning a game was calculated by Z-normalizing the expected tournament wins, which was used to compare teams matched against each other and calculate the probability of each team winning. Each round following is calculated by a series of conditional probabilities which account for the probability of the given team making it to the round, with the probability of any other team making it to the round against them, multiplied with the probability of each respective team winning against each other.</p>
+                    <p class="lead">The CorgPredicts model was used to predict brackets dating back to 2014 and continued to produce consistent results with an average success rate of 84.1%. To put this number in context, according to <a href="https://www.ncaa.com/news/basketball-men/article/2019-03-20/march-madness-bracket-history-ultimate-guide">NCAA.com</a> the most accurate bracket they have recieved had a success rate of 85.7%, which has only happened twice. CorgPredicts did not find rank to be a significant predictor of tournament wins, which eliminated all subjective factors from this model.</p>
+		    <p class="lead">All data was accessed from sports-reference.com</p>
 		    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top: 50px; margin-bottom:15px;">
 
                         <input type="hidden" name="cmd" value="_donations" />
@@ -187,6 +132,43 @@
                         </form>
                     <p>Did we help you with your picks? Support CorgPredicts.com by making a small donation so we can continue to make predictions on future tournaments and playoffs.</p>
 
+                </div>
+            </div>
+
+           <div class="row" style="margin-top:150px;">
+            <div class="col mx-auto">
+                <div class="card mx-auto" style="width: 18rem;">
+                  <img src="/images/craig_headshot.jpg" class="card-img-top" alt="Headshot">
+                  <div class="card-body">
+                    <h5 class="card-title">Craig Spence</h5>
+                    <p class="card-text">Statistics / Computer Science Student at Dalhousie University</p>
+                    <a href="https://ca.linkedin.com/in/craig-spence-85905819a" class="btn btn-primary">LinkedIn</a>
+                  </div>
+                </div>
+            </div>
+            <div class="col mx-auto" style="padding-top:50px;">
+                <h2>About Craig</h2>
+                <p>Craig Spence is a Statistics & Computer Science Student at Dalhousie University, as well as a member of the Canadian National Canoe Team.</p>
+                <p>Craig developed the CorgPredicts data model and used it to make predictions for the upcoming 2020 March Madness tournament.</p>
+            </div>
+           </div>
+
+            <div class="row" style="margin-top:50px;">
+                <div class="col mx-auto">
+                    <div class="card mx-auto" style="width: 18rem;">
+                      <img src="/images/matt_headshot.jpeg" class="card-img-top" alt="Headshot">
+                      <div class="card-body">
+                        <h5 class="card-title">Matt Peachey</h5>
+                        <p class="card-text">Third Year Computer Science Student at Dalhousie University.</p>
+                        <a href="https://ca.linkedin.com/in/matt-peachey-02bb11152" class="btn btn-primary">LinkedIn</a>
+                      </div>
+                    </div>
+                </div>
+                <div class="col mx-auto" style="padding-top:50px;">
+                    <h2>About Matt</h2>
+                    <p>Matt Peachey is a 3rd year Computer Science student at Dalhousie University in Halifax, Nova Scotia.</p>
+                    <p>Matt has led the development and deployment of <strong>corgpredicts.com</strong> by implementing modern web technologies and services.</p>
+                    <p>This website is built using a <a href="https://nodejs.org/en/">Node.js</a> stack and is deployed through the <a href="https://www.heroku.com">Heroku</a> service!</p>
                 </div>
             </div>
 
@@ -208,81 +190,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script>
-        function toggleRows() {
-            $(".tableRow").toggle();
-            if ($("#showAllRows").html() == "Show all teams") {
-                $("#showAllRows").html("Show only first 10 teams")
-            } else {
-                $("#showAllRows").html("Show all teams")
-            }
-        }
-
-        //Thanks to: https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript -- pad start to make 8 < 79 (for example)
-        const getCellValue = (tr, idx) => String(tr.children[idx].innerText) || String(tr.children[idx].textContent);
-
-        const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-            v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-            )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-
-        // do the work...
-        document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-          const table = th.closest('table');
-          const tbody = table.querySelector('tbody');
-          Array.from(tbody.querySelectorAll('tr'))
-            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-            .forEach(tr => tbody.appendChild(tr) );})))
-
-        var teamsClicked = 0;
-        var team1;
-        var team2;
-        var stat1;
-        var stat2;
-        var prev_color1 = null;
-        var prev_color2 = null
-         // Function for head to head comparison
-        document.querySelectorAll('.team-name').forEach(element => element.addEventListener('click', (() => {
-            element.style.backgroundColor='red';
-
-            if(teamsClicked===0) {
-                team_name1 = element.innerHTML;
-                stat1 = Number(element.children[0].innerHTML)
-            }
-            else if(teamsClicked===1){
-                team_name2 = element.innerHTML;
-                stat2 = Number(element.children[0].innerHTML)
-
-                // Do corg's a/a+b calculation
-                result = stat1 / (stat1+stat2)
-
-                $("#team1").html(team_name1 + ": " + stat1)
-                $("#team2").html(team_name2 + ": " + stat2)
-
-                if(team_name1 != team_name2){
-                    if(result > 0.5){
-                        $("#winner").html("The predicted winner is: " + team_name1 + " with " + String(100*result).slice(0,5) + "% odds!")
-                    }
-                    else{
-                        $("#winner").html("The predicted winner is: " + team_name2 + " with " + String(100*(1-result)).slice(0,5) + "% odds!")
-                    }
-                    $('#head2head').modal('show');
-                    return;
-                }else{
-                    teamsClicked=1;
-                    return
-                }
-
-                return;
-            }
-            teamsClicked++
-        })))
-
-        $('#head2head').on('hide.bs.modal', function (e) {
-            teamsClicked=0;
-            $('td').css({ color: 'inherit', background:'inherit' });
-        })
-
-    </script>
 
 </body>
 
