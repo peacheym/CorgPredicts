@@ -14,8 +14,9 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get("/",function(req,res){
-    fs.appendFile('visits.csv', req.ip+",", function (err) {console.log("error")});
-
+    fs.appendFile('visits.csv', req.ip+",", function (err) {
+      if (err) throw err;
+      });
     let tableData = [
         {team: "Coming soon", r1: "", r2: "", r3: "", r4: "", r5: "", r6: "", r7: ""},
         ];
@@ -24,8 +25,9 @@ app.get("/",function(req,res){
 
 //Route for the 2019 predictions page
 app.get("/2019",function(req,res){
-    fs.appendFile('visits.csv', req.ip+",", function (err) {console.log("error")});
-
+    fs.appendFile('visits.csv', req.ip+",", function (err) {
+      if (err) throw err;
+      });
     //Vars to be sent to the template engine
     var year = 2019;
     var tableData = [];
@@ -68,7 +70,9 @@ app.get("/2019",function(req,res){
 });
 
 app.get("/about", function(req,res){
-    fs.appendFile('visits.csv', req.ip+",", function (err) {console.log("error")});
+    fs.appendFile('visits.csv', req.ip+",", function (err) {
+      if (err) throw err;
+      });
 
     res.render('about',{year:2020});
 })
